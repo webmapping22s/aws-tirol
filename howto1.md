@@ -133,7 +133,11 @@ L.geoJSON(geojson, {
 
 [🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/390d6f905c0be8d36655c1b9bfc1fc61df4f86f8)
 
-Damit ist die Grundkarte fertig und wir könnten uns an das Implementieren der thematischen Layer machen, doch bevor wir das tun ändern wir noch einmal die Struktur unseres Codes und lagern die Funktionalität zum Zeichnen der Stationsmarker in eine eigene Funktion `drawStations` aus. Aufgerufen wird sie, sobald die Daten in der Variablen `geojson` verfügbar sind und beim Aufruf übergeben wir diese GeoJSON-Daten gleich mit. So sieht die Funktion `drawStations` aus:
+Damit ist die Grundkarte fertig und wir könnten uns an das Implementieren der thematischen Layer machen.
+
+## 6. Code für den Stationslayer in eine eigene Funktion auslagern
+
+Doch bevor wir das tun ändern wir noch einmal die Struktur unseres Codes und lagern die Funktionalität zum Zeichnen der Stationsmarker in eine eigene Funktion `drawStations` aus. Aufgerufen wird sie, sobald die Daten in der Variablen `geojson` verfügbar sind und beim Aufruf übergeben wir diese GeoJSON-Daten gleich mit. So sieht die Funktion `drawStations` aus:
 
 ```javascript
 // Wetterstationen mit Icons und Popups implementieren
