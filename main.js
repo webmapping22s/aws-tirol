@@ -73,11 +73,30 @@ let drawStations = function(geojson) {
     }).addTo(overlays.stations);
 }
 
+// Temperatur
+let drawTemperature = function(geojson) {
+    L.geoJSON(geojson, {
+        pointToLayer: function(geoJsonPoint, latlng) {
+            let popup = `
+                ${geoJsonPoint.properties.name} (${geoJsonPoint.geometry.coordinates[2]}m)
+            `;
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconUrl: "icons/wifi.png",
+                    iconAnchor: [16, 37],
+                    popupAnchor: [0, -37]
+                })
+            }).bindPopup(popup);
+        }
+    }).addTo(overlays.temperature);
+}
+
 // Wetterstationen
 async function loadData(url) {
     let response = await fetch(url);
     let geojson = await response.json();
 
     drawStations(geojson);
+    drawTemperature(geojson);
 }
 loadData("https://static.avalanche.report/weather_stations/stations.geojson");
