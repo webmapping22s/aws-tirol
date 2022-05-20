@@ -52,7 +52,7 @@ L.control.scale({
 // Fullscreen control
 L.control.fullscreen().addTo(map);
 
-// diese Layer beim Laden anzeigen
+// diesen Layer beim Laden anzeigen
 overlays.wind.addTo(map);
 
 // Farben nach Wert und Schwellen ermitteln
@@ -168,7 +168,7 @@ let drawWind = function(geojson) {
     }).addTo(overlays.wind);
 }
 
-// Wetterstationen
+// Daten laden und Funktionen aufrufen
 async function loadData(url) {
     let response = await fetch(url);
     let geojson = await response.json();
