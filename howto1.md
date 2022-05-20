@@ -140,7 +140,7 @@ Damit ist die Grundkarte fertig und wir könnten uns an das Implementieren der t
 Doch bevor wir das tun ändern wir noch einmal die Struktur unseres Codes und lagern die Funktionalität zum Zeichnen der Stationsmarker in eine eigene Funktion `drawStations` aus. Aufgerufen wird sie, sobald die Daten in der Variablen `geojson` verfügbar sind und beim Aufruf übergeben wir diese GeoJSON-Daten gleich mit. So sieht die Funktion `drawStations` aus:
 
 ```javascript
-// Wetterstationen mit Icons und Popups implementieren
+// Wetterstationen mit Icons und Popups
 let drawStations = function(geojson) {
     L.geoJSON(geojson, {
         pointToLayer: function(geoJsonPoint, latlng) {
@@ -155,7 +155,7 @@ let drawStations = function(geojson) {
                 })
             }).bindPopup(popup);
         }
-    }).addTo(overlays.stations);    
+    }).addTo(overlays.stations);
 }
 ```
 
@@ -172,6 +172,6 @@ async function loadData(url) {
 loadData("https://static.avalanche.report/weather_stations/stations.geojson");
 ```
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/)
+[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/4232f9c1f65a611bb57f293c194ae7c8b053c866)
 
 Im Gegensatz zum Wienbeispiel laden wir hier nur einen einzigen Datensatz und verwenden dessen Inhalt zum Zeichnen der verschiedenen Layer. Das Auslagern des Codes in einzelne Funktionen macht deshalb Sinn und unseren Code wird sehr übersichtlich.
