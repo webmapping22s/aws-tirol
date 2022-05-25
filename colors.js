@@ -117,5 +117,38 @@ const COLORS = {
         min: 80,
         max: 300,
         color: "#ff3232"
+    }],
+    humidity: [{
+        min: 0,
+        max: 30,
+        color: "#EEE"
+    }, {
+        min: 30,
+        max: 40,
+        color: "#DDD"
+    }, {
+        min: 40,
+        max: 50,
+        color: "#C6C9CE"
+    }, {
+        min: 50,
+        max: 60,
+        color: "#BBB"
+    }, {
+        min: 60,
+        max: 70,
+        color: "#AAC"
+    }, {
+        min: 70,
+        max: 80,
+        color: "#9998DD"
+    }, {
+        min: 80,
+        max: 90,
+        color: "#8788EE"
+    }, {
+        min: 90,
+        max: 200,
+        color: "#7677E1"
     }]
 }
