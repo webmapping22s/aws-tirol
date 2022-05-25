@@ -112,6 +112,33 @@ let drawTemperature = function(geojson) {
     }).addTo(overlays.temperature);
 }
 
+// Relative Luftfeuchtigkeit
+let drawHumidity = function(geojson) {
+    L.geoJSON(geojson, {
+        filter: function(geoJsonPoint) {
+            if (geoJsonPoint.properties.RH >= 0 && geoJsonPoint.properties.RH < 200) {
+                return true;
+            }
+        },
+        pointToLayer: function(geoJsonPoint, latlng) {
+            let popup = `
+                ${geoJsonPoint.properties.name} (${geoJsonPoint.geometry.coordinates[2]}m)
+            `;
+            let color = getColor(
+                geoJsonPoint.properties.RH,
+                COLORS.humidity
+            );
+
+            return L.marker(latlng, {
+                icon: L.divIcon({
+                    className: "aws-div-icon",
+                    html: `<span style="background-color:${color}">${geoJsonPoint.properties.RH.toFixed(0)}</span>`
+                })
+            }).bindPopup(popup);
+        }
+    }).addTo(overlays.humidity);
+}
+
 // Schneehöhen
 let drawSnowheight = function(geojson) {
     L.geoJSON(geojson, {
@@ -175,6 +202,7 @@ async function loadData(url) {
 
     drawStations(geojson);
     drawTemperature(geojson);
+    drawHumidity(geojson);
     drawSnowheight(geojson);
     drawWind(geojson);
 }
