@@ -72,7 +72,13 @@ let drawStations = function(geojson) {
     L.geoJSON(geojson, {
         pointToLayer: function(geoJsonPoint, latlng) {
             let popup = `
-                ${geoJsonPoint.properties.name} (${geoJsonPoint.geometry.coordinates[2]}m)
+                <h3>${geoJsonPoint.properties.name} (${geoJsonPoint.geometry.coordinates[2]}m)</h3>
+                <hr>
+                Lufttemperatur (°C): ${geoJsonPoint.properties.LT && geoJsonPoint.properties.LT.toFixed(1) || "-"}<br>
+                Schneehöhe (cm): ${geoJsonPoint.properties.HS && geoJsonPoint.properties.HS.toFixed(0) || "-"}<br>
+                Windgeschwindigeit (km/h): ${geoJsonPoint.properties.WG && (geoJsonPoint.properties.WG * 3.6).toFixed(0) || "-"}<br>
+                Windrichtung (°): ${geoJsonPoint.properties.WR && geoJsonPoint.properties.WR.toFixed(0) || "-"}<br>
+                Relative Luftfeuchtigkeit (%): ${geoJsonPoint.properties.RH && geoJsonPoint.properties.RH.toFixed(0) || "-"}<br>
             `;
             return L.marker(latlng, {
                 icon: L.icon({
