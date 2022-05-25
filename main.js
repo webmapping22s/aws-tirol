@@ -79,6 +79,8 @@ let drawStations = function(geojson) {
                 Windgeschwindigeit (km/h): ${geoJsonPoint.properties.WG && (geoJsonPoint.properties.WG * 3.6).toFixed(0) || "-"}<br>
                 Windrichtung (°): ${geoJsonPoint.properties.WR && geoJsonPoint.properties.WR.toFixed(0) || "-"}<br>
                 Relative Luftfeuchtigkeit (%): ${geoJsonPoint.properties.RH && geoJsonPoint.properties.RH.toFixed(0) || "-"}<br>
+                <hr>
+                <a href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/dreitage/${geoJsonPoint.properties.plot}.png" target="aws-tirol">Wetterverlaufsgrafik anzeigen</a>
             `;
             return L.marker(latlng, {
                 icon: L.icon({
