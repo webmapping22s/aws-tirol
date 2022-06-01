@@ -198,7 +198,7 @@ let drawWind = function(geojson) {
             return L.marker(latlng, {
                 icon: L.divIcon({
                     className: "aws-div-icon-wind",
-                    html: `<span style="color:${color};transform: rotate(${deg}deg)"><i class="fa-solid fa-circle-arrow-down"></i></span>`
+                    html: `<span style="color:${color};transform: translate(-30%, -50%) rotate(${deg}deg)"><i class="fa-solid fa-circle-arrow-down"></i></span>`
                 })
             }).bindPopup(popup);
         }
