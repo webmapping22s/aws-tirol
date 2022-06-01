@@ -195,7 +195,7 @@ let drawWind = function(geojson) {
 
             return L.marker(latlng, {
                 icon: L.divIcon({
-                    className: "aws-div-icon",
+                    className: "aws-div-icon-wind",
                     html: `<span style="background-color:${color};transform: rotate(${deg}deg)"><i class="fa-solid fa-circle-arrow-up"></i> ${geoJsonPoint.properties.WG.toFixed(0)}</span>`
                 })
             }).bindPopup(popup);
