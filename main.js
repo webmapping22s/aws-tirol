@@ -185,6 +185,8 @@ let drawWind = function(geojson) {
         pointToLayer: function(geoJsonPoint, latlng) {
             let popup = `
                 ${geoJsonPoint.properties.name} (${geoJsonPoint.geometry.coordinates[2]}m)
+                <hr>
+                Windgeschwindigkeit: ${(geoJsonPoint.properties.WG * 3.6).toFixed(0)} km/h
             `;
             let color = getColor(
                 geoJsonPoint.properties.WG,
@@ -196,7 +198,7 @@ let drawWind = function(geojson) {
             return L.marker(latlng, {
                 icon: L.divIcon({
                     className: "aws-div-icon-wind",
-                    html: `<span style="background-color:${color};transform: rotate(${deg}deg)"><i class="fa-solid fa-circle-arrow-up"></i> ${geoJsonPoint.properties.WG.toFixed(0)}</span>`
+                    html: `<span style="background-color:${color};transform: rotate(${deg}deg)"><i class="fa-solid fa-circle-arrow-up"></i></span>`
                 })
             }).bindPopup(popup);
         }
