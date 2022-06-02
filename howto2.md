@@ -1,4 +1,4 @@
-# Wetterstationen Tirol HOWTO (Teil 2) - Temperatur Layer erzeugen und weitere Layer
+# Wetterstationen Tirol HOWTO (Teil 2) - Temperatur Layer mit L.divIcon() und COLORS Objekt
 
 ## 1. die Funktion drawTemperature() vorbereiten
 
@@ -175,7 +175,7 @@ Wie erwartet, bekommen wir den Farbwert `#9f80ff` angezeigt. Er steht für Tempe
 
 ### c) Die ermittelte Farbe als style-Attribut beim &lt;span> Element setzen
 
-Jetzt müssen wir nur noch in `pointToLayer`, direkt nach `let popup`, die richtige Farbe für das `L.divIcon` ermitteln, in `let color` speichern.
+Jetzt müssen wir nur noch in `pointToLayer`, direkt nach `let popup`, die richtige Farbe für das `L.divIcon` ermitteln und in `let color` speichern.
 
 ```javascript
 let color = getColor(
@@ -185,7 +185,7 @@ let color = getColor(
 ```
 [🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/9ab7176de1d81d52301fa72a30e60bbf0533ad86)
 
-Danach können wir es als `style-Attribut` beim &lt;span> Element über die CSS Regel `background-color:${color}` einsetzen.
+Danach können wir die Farbe als `style-Attribut` beim &lt;span> Element über die CSS Regel `background-color:${color}` einsetzen.
 
 ```javascript
 icon: L.divIcon({
@@ -213,39 +213,3 @@ icon: L.divIcon({
 Das Verschieben der Marker bewirkt die CSS-Eigenschaft [transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform), deren `translate` Anweisung zwei Offsets in `x` und `y` Richtung erwartet. Warum wir beim Verschieben `-30%` für die x-Richtung verwenden müssen bleibt allerdings ein Rätsel. Immerhin liegt der Textmarker jetzt mit seinem Zentrum an der annähernd richtigen Position.
 
 **Hinweis**: mit [transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) und der `rotate` Anweisung könn(t)en wir die Marker auch drehen ...
-
-## 5. Weitere Layer implementieren
-
-### a) Schneehöhen
-
-* Funktion `drawSnowheight()`
-
-* Overlay `snowheight`
-
-* Attribut **HS**
-
-* Farben <https://lawinen.report/weather/map/snow-height>
-
-
-[🔗 COMMIT Farbpalette](https://github.com/webmapping/aws-tirol/commit/e39090774dfbaa0088012d029ef50fac4ec9e014)
-[🔗 COMMIT Farbpalette Korrektur](https://github.com/webmapping/aws-tirol/commit/bedbeff37c1b3f90378ea67b22dfb70414da27de)
-[🔗 COMMIT Implementierung](https://github.com/webmapping/aws-tirol/commit/a9338c514889e0a6dffda7f9e0e611902d2382b3)
-
-### b) Windstärke
-
-* Funktion `drawWind()`
-
-* Overlay `wind`
-
-* Attribut: **WG**
-
-* Farben für Windstärke <https://lawinen.report/weather/map/wind>
-
-    [🔗 COMMIT Farbpalette](https://github.com/webmapping/aws-tirol/commit/cadfb223059f3383c30b11e032a40192e1c120e1)
-    [🔗 COMMIT Implementierung](https://github.com/webmapping/aws-tirol/commit/1202ec45e84706da03023703518de82288095d72)
-
-* Ergänzung Windrichtung als gedrehtes Font Awesome Icon
-
-    * Attribut: **WR**
-
-    [🔗 COMMIT Implementierung](https://github.com/webmapping/aws-tirol/commit/48f777059cbec2a732969ca041d2a37e33eed4b9)

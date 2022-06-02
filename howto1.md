@@ -1,4 +1,4 @@
-# Wetterstationen Tirol HOWTO (Teil 1) - Basiskarte mit Stationen
+# Wetterstationen Tirol HOWTO (Teil 1) - Basiskarte mit Stationen und Popup
 
 ## 1. Das Template auspacken
 
@@ -42,7 +42,7 @@ let startLayer = L.tileLayer("https://static.avalanche.report/tms/{z}/{x}/{y}.we
 })
 ```
 
-Wie in der Lizenz gefordert nennen wir in der `attribution` [Lawinen.report](https://lawinen.report/) als Quelle
+Wie in der Lizenz gefordert, nennen wir in der `attribution` [Lawinen.report](https://lawinen.report/) als Quelle
 
 Als zweiten Hintergrundlayer definieren wir `Esri.WorldImagery` vom Leaflet Providers Plugin und können die Layer control hinzufügen.
 
@@ -99,7 +99,7 @@ Die meisten Webserver sind so konfiguriert, dass sie direkte Datennutzung nur da
 
 Im Gegensatz dazu ist der Server `https://data.wien.gv.at` bei den Wiener Daten oder der Server `https://static.avalanche.report` von [Lawinen.report](https://lawinen.report/) großzügiger und erlaubt das direkte Einbinden der GeoJSON-Dateien.
 
-**Hinweis**: solltet ihr bei euren Projekten Daten verwenden, die nicht *Cross-Origin* fähig sind, wird euch nichts anderes übrig bleiben, als eine lokale Kopie der Daten zu speichern und diese dann im Skript zu verwenden.
+**Hinweis**: solltet ihr bei euren Projekten Daten verwenden, die nicht *Cross-Origin* fähig sind, wird euch nichts Anderes übrig bleiben, als eine lokale Kopie der Daten zu speichern und diese dann im Skript zu verwenden.
 
 Wer noch mehr über das Thema *Cross Origin* wissen will, wird bei den [MDN webdocs unter CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) fündig
 
@@ -174,4 +174,26 @@ loadData("https://static.avalanche.report/weather_stations/stations.geojson");
 
 [🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/4232f9c1f65a611bb57f293c194ae7c8b053c866)
 
-Im Gegensatz zum Wienbeispiel laden wir hier nur einen einzigen Datensatz und verwenden dessen Inhalt zum Zeichnen der verschiedenen Layer. Das Auslagern des Codes in einzelne Funktionen macht deshalb Sinn und unseren Code wird sehr übersichtlich.
+Im Gegensatz zum Wienbeispiel laden wir hier nur einen einzigen Datensatz und verwenden dessen Inhalt zum Zeichnen der verschiedenen Layer. Das Auslagern des Codes in einzelne Funktionen macht deshalb Sinn und unser Code wird sehr übersichtlich.
+
+## 7. Das Popup der Stationen erweitern
+
+Die vorhandenen Stationsdaten können wir schließlich noch im Popup der Stationen anzeigen
+
+Durch die Verknüpfung des **Logical AND &&** Operator mit dem **Logical OR ||** Operator stellen wir sicher, dass Werte nur dann formatiert, bzw. berechnet werden, wenn sie auch existieren - z.B.
+
+```js
+${geoJsonPoint.properties.LT && geoJsonPoint.properties.LT.toFixed(1) || "-"}
+```
+    
+[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/e6ad75e4adc599418a022fe839e9fba2f6f83df6)
+
+**Hinweis**: eleganter schreibt man solche Abfragen als **[Conditional (ternary) operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)** bei dem das `&&`  mit einem **?** und das `||` mir einem **:** ersetzt werden - z.B.
+
+```js
+${geoJsonPoint.properties.LT ? geoJsonPoint.properties.LT.toFixed(1) : "-"}
+```
+
+Bei den GeoJSON-Daten gibt es auch ein Attribut `plot` über das ihr einen Link auf eine Wetterverlaufsgrafik setzen könnt - die URL für den Wert `soell` lautet z.B. <https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/dreitage/soell.png>. Mit Template-Syntax können wir diesen Link zum Popup hinzufügen. Mit `target="aws-tirol"` stellen wir sicher, dass alle Grafiken im selben Tab angezeigt werden:
+
+[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/18a48ce6c995d5cd96bb3c9726f4c843f09ae8e4)
