@@ -36,7 +36,7 @@ async function loadData(url) {
 }
 ```
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/7b65281bffcbafb433ebe0f0ad6b3a58b9c99d8c)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/7b65281bffcbafb433ebe0f0ad6b3a58b9c99d8c)
 
 Damit wir beim Entwickeln nur unseren Temperatur Layer sehen, zeigen wir ihn statt dem Stationslayer beim Laden an. Den Kommentar der dort steht änderen wird gleich mit.
 
@@ -45,7 +45,7 @@ Damit wir beim Entwickeln nur unseren Temperatur Layer sehen, zeigen wir ihn sta
 overlays.temperature.addTo(map);
 ```
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/7f08cead3d434958336e5f29849374e48a3ceeb8)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/7f08cead3d434958336e5f29849374e48a3ceeb8)
 
 ## 2. L.divIcon() für Marker mit Text verwenden
 
@@ -62,7 +62,7 @@ icon: L.divIcon({
 })
 ```
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/a734962082814af1b515972dda0f5cf69c4dd679)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/a734962082814af1b515972dda0f5cf69c4dd679)
 
 ## 3. Den Text Marker in main.css stylen
 
@@ -82,7 +82,7 @@ aws-div-icon span {
 } 
 ```
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/814d396738c78d3df5430152c9d5b0f1291f28d7)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/814d396738c78d3df5430152c9d5b0f1291f28d7)
 
 Die einzelnen CSS Regeln sind selbsterklärend, lediglich die `text-shadow` Anweisung ist für uns in dieser Form neu. Sie sorgt dafür, dass auf allen Seiten des Textes ein weißer Schatten entsteht, der den Text auch auf farbigem Hintergrund (wie wir ihn später implementieren werden) gut lesbar macht
 
@@ -102,7 +102,7 @@ filter: function(geoJsonPoint) {
 
 Neu bei dieser if-Abfrage ist die Verknüpfung zweier Bedingungen mit dem [Logical AND (&&)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) Operator
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/3e64c321f3af02d078383889b9f385e4b0261ce1)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/3e64c321f3af02d078383889b9f385e4b0261ce1)
 
 Damit verschwinden Stationen ohne Temperatur und wir können die zweite Verbesserung angehen - die Zahl der Nachkommastellen mit der Javascript Methode [.toFixed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) auf eine Nachkommastelle festlegen:
 
@@ -110,7 +110,7 @@ Damit verschwinden Stationen ohne Temperatur und wir können die zweite Verbesse
 html: `<span>${geoJsonPoint.properties.LT.toFixed(1)}</span>`
 ```
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/67c31ec41e90c641e8c7ff294db569e981b77cb2)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/67c31ec41e90c641e8c7ff294db569e981b77cb2)
 
 Dieser Schritt hätte ohne das Ausschließen von Stationen ohne Temperatur unser Skript gestoppt, denn der Versuch den Wert `undefined` auf eine Nachkommastelle zu formatieren wäre natürlich gescheitert.
 
@@ -147,9 +147,9 @@ const COLORS = {
 };
 ```
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/79368812d87b431810952fc57af3e0c7b0e3517e)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/79368812d87b431810952fc57af3e0c7b0e3517e)
 
-Das vorläufige Resultat ist in [colors.js](https://webmapping.github.io/aws-tirol/colors.js) sichtbar. Später werden wir auch noch Farbpaletten für die anderen Layer hinzufügen ...
+Das vorläufige Resultat ist in [colors.js](https://webmapping22s.github.io/aws-tirol/colors.js) sichtbar. Später werden wir auch noch Farbpaletten für die anderen Layer hinzufügen ...
 
 ### b) Funktion getColor(value, ramp) definieren
 
@@ -169,7 +169,7 @@ let getColor = function(value, ramp) {
 console.log(getColor(-40, COLORS.temperature));
 ```
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/21cb1f76da9e062a256bc12210d5ceb1914ef197)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/21cb1f76da9e062a256bc12210d5ceb1914ef197)
 
 Wie erwartet, bekommen wir den Farbwert `#9f80ff` angezeigt. Er steht für Temperaturen zwischen -50°  und -25°.
 
@@ -183,7 +183,7 @@ let color = getColor(
     COLORS.temperature
 );
 ```
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/9ab7176de1d81d52301fa72a30e60bbf0533ad86)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/9ab7176de1d81d52301fa72a30e60bbf0533ad86)
 
 Danach können wir die Farbe als `style-Attribut` beim &lt;span> Element über die CSS Regel `background-color:${color}` einsetzen.
 
@@ -194,7 +194,7 @@ icon: L.divIcon({
 })
 ```
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/36d0c52bbe828da23dc337ac69875b904dd024d9)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/36d0c52bbe828da23dc337ac69875b904dd024d9)
 
 ### d) Leider ist die Position des Icons noch nicht ganz richtig :-(
 
@@ -208,7 +208,7 @@ icon: L.divIcon({
 }
 ```
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/f20d0fea0475c546d0008db47357b858d32e9ce8)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/f20d0fea0475c546d0008db47357b858d32e9ce8)
 
 Das Verschieben der Marker bewirkt die CSS-Eigenschaft [transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform), deren `translate` Anweisung zwei Offsets in `x` und `y` Richtung erwartet. Warum wir beim Verschieben `-30%` für die x-Richtung verwenden müssen bleibt allerdings ein Rätsel. Immerhin liegt der Textmarker jetzt mit seinem Zentrum an der annähernd richtigen Position.
 

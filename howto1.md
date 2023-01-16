@@ -2,13 +2,13 @@
 
 ## 1. Das Template auspacken
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/2e036a4a5356a9b7b85c264cd70fda5644a91cd0)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/2e036a4a5356a9b7b85c264cd70fda5644a91cd0)
 
 ### a) HTML Seite index.html
 
 Die `index.html` Datei des Templates ist eine Kopie des Templates des Wien Beispiels mit einigen wenigen Änderungen:
 
-* als *favicon* für den Browser dient das Icon, das wir später für die Stationen verwenden werden, es liegt unter [icons/wifi.png](https://webmapping.github.io/aws-tirol/icons/wifi.png).
+* als *favicon* für den Browser dient das Icon, das wir später für die Stationen verwenden werden, es liegt unter [icons/wifi.png](https://webmapping22s.github.io/aws-tirol/icons/wifi.png).
 
 * im &lt;head>-Bereich sind Leaflet und die Leaflet Plugins [Leaflet providers](https://github.com/leaflet-extras/leaflet-providers) sowie [Leaflet fullscreen](https://github.com/Leaflet/Leaflet.fullscreen) eingebaut.
 
@@ -95,7 +95,7 @@ Die negative Antwort vom Server sehen wir in der Konsole:
 
 *Quellübergreifende (Cross-Origin) Anfrage blockiert: Die Gleiche-Quelle-Regel verbietet das Lesen der externen Ressource auf <https://lawine.tirol.gv.at/data/produkte/ogd.geojson>.*
 
-Die meisten Webserver sind so konfiguriert, dass sie direkte Datennutzung nur dann zulassen, wenn das ausführende Skript auch am selben Server läuft. Unsere Beispiele laufen entweder lokal unter `http://127.0.0.1:5500/` oder im Web unter z.B. `https://webmapping.github.io/aws-tirol`. Beides lässt der Server *lawine.tirol.gv.at* nicht zu und verweigert die Auslieferung der GeoJSON-Daten. 
+Die meisten Webserver sind so konfiguriert, dass sie direkte Datennutzung nur dann zulassen, wenn das ausführende Skript auch am selben Server läuft. Unsere Beispiele laufen entweder lokal unter `http://127.0.0.1:5500/` oder im Web unter z.B. `https://webmapping22s.github.io/aws-tirol`. Beides lässt der Server *lawine.tirol.gv.at* nicht zu und verweigert die Auslieferung der GeoJSON-Daten. 
 
 Im Gegensatz dazu ist der Server `https://data.wien.gv.at` bei den Wiener Daten oder der Server `https://static.avalanche.report` von [Lawinen.report](https://lawinen.report/) großzügiger und erlaubt das direkte Einbinden der GeoJSON-Dateien.
 
@@ -131,7 +131,7 @@ L.geoJSON(geojson, {
 
 * die Marker hängen wir an unser vordefiniertes Overlay in `overlays.stations`
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/390d6f905c0be8d36655c1b9bfc1fc61df4f86f8)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/390d6f905c0be8d36655c1b9bfc1fc61df4f86f8)
 
 Damit ist die Grundkarte fertig und wir könnten uns an das Implementieren der thematischen Layer machen.
 
@@ -172,7 +172,7 @@ async function loadData(url) {
 loadData("https://static.avalanche.report/weather_stations/stations.geojson");
 ```
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/4232f9c1f65a611bb57f293c194ae7c8b053c866)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/4232f9c1f65a611bb57f293c194ae7c8b053c866)
 
 Im Gegensatz zum Wienbeispiel laden wir hier nur einen einzigen Datensatz und verwenden dessen Inhalt zum Zeichnen der verschiedenen Layer. Das Auslagern des Codes in einzelne Funktionen macht deshalb Sinn und unser Code wird sehr übersichtlich.
 
@@ -186,7 +186,7 @@ Durch die Verknüpfung des **Logical AND &&** Operator mit dem **Logical OR ||**
 ${geoJsonPoint.properties.LT && geoJsonPoint.properties.LT.toFixed(1) || "-"}
 ```
     
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/e6ad75e4adc599418a022fe839e9fba2f6f83df6)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/e6ad75e4adc599418a022fe839e9fba2f6f83df6)
 
 **Hinweis**: eleganter schreibt man solche Abfragen als **[Conditional (ternary) operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)** bei dem das `&&`  mit einem **?** und das `||` mir einem **:** ersetzt werden - z.B.
 
@@ -196,4 +196,4 @@ ${geoJsonPoint.properties.LT ? geoJsonPoint.properties.LT.toFixed(1) : "-"}
 
 Bei den GeoJSON-Daten gibt es auch ein Attribut `plot` über das ihr einen Link auf eine Wetterverlaufsgrafik setzen könnt - die URL für den Wert `soell` lautet z.B. <https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/dreitage/soell.png>. Mit Template-Syntax können wir diesen Link zum Popup hinzufügen. Mit `target="aws-tirol"` stellen wir sicher, dass alle Grafiken im selben Tab angezeigt werden:
 
-[🔗 COMMIT](https://github.com/webmapping/aws-tirol/commit/18a48ce6c995d5cd96bb3c9726f4c843f09ae8e4)
+[🔗 COMMIT](https://github.com/webmapping22s/aws-tirol/commit/18a48ce6c995d5cd96bb3c9726f4c843f09ae8e4)
